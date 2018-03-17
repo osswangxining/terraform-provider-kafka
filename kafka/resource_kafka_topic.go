@@ -191,6 +191,7 @@ func topicRead(d *schema.ResourceData, meta interface{}) error {
 
 	return nil
 }
+
 func customPartitionDiff(diff *schema.ResourceDiff, v interface{}) error {
 	log.Printf("[INFO] Checking the diff!")
 	if diff.HasChange("partitions") {
