@@ -121,7 +121,7 @@ func (c *Client) CreateTopic(t Topic) error {
 		TopicDetails: map[string]*sarama.TopicDetail{
 			t.Name: {
 				NumPartitions:     t.Partitions,
-				ReplicationFactor: 1,
+				ReplicationFactor: t.ReplicationFactor,
 				ConfigEntries:     t.Config,
 			},
 		},
