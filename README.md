@@ -65,3 +65,7 @@ In order to run the full suite of Acceptance tests, run `make testacc`.
 ```sh
 $ make testacc
 ```
+
+See the development guide - Writing Custom Providers
+
+https://www.terraform.io/guides/writing-custom-terraform-providers.html
