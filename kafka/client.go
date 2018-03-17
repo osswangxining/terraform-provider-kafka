@@ -115,11 +115,13 @@ func (c *Client) CreateTopic(t Topic) error {
 
 	timeout := time.Duration(c.config.Timeout) * time.Second
 	log.Printf("[DEBUG] Timeout is %v ", timeout)
+	log.Printf("[DEBUG] replication_factor is %d", t.ReplicationFactor)
+
 	req := &sarama.CreateTopicsRequest{
 		TopicDetails: map[string]*sarama.TopicDetail{
 			t.Name: {
 				NumPartitions:     t.Partitions,
-				ReplicationFactor: t.ReplicationFactor,
+				ReplicationFactor: 1,
 				ConfigEntries:     t.Config,
 			},
 		},

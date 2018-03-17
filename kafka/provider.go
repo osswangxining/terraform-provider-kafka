@@ -30,7 +30,7 @@ func Provider() terraform.ResourceProvider {
 		DataSourcesMap: map[string]*schema.Resource{},
 
 		ResourcesMap: map[string]*schema.Resource{
-			"kafak_topic": resourceKafkaTopic(),
+			"kafka_topic": resourceKafkaTopic(),
 		},
 
 		ConfigureFunc: providerConfigure,

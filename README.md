@@ -67,5 +67,13 @@ $ make testacc
 ```
 
 See the development guide - Writing Custom Providers
-
+---------------------------
 https://www.terraform.io/guides/writing-custom-terraform-providers.html
+
+
+How to debug terraform #16752
+---------------------------
+set TF_LOG=DEBUG
+set TF_TF_LOG_PATH=/tmp/log
+terraform apply
+observe TRACE level logs in the file /tmp/log

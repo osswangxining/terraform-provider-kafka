@@ -3,6 +3,7 @@ package kafka
 import (
 	"errors"
 	"fmt"
+	"log"
 
 	"github.com/Shopify/sarama"
 	"github.com/hashicorp/terraform/helper/schema"
@@ -63,6 +64,8 @@ func metaToTopic(d *schema.ResourceData, meta interface{}) Topic {
 	convertedPartitions := int32(partitions)
 	convertedRF := int16(replicationFactor)
 	config := d.Get("config").(map[string]interface{})
+
+	log.Printf("[INFO] topic's replicationFactor: %d", replicationFactor)
 
 	m2 := make(map[string]*string)
 	for key, value := range config {
