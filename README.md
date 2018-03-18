@@ -1,4 +1,7 @@
 Terraform Provider
+
+This is a plugin for HashiCorp [Terraform](https://terraform.io/), which helps creates, configures and deletes topics on  on [Kafka](http://kafka.apache.org/).
+
 ==================
 
 - Website: https://www.terraform.io
@@ -38,6 +41,35 @@ Using the provider
 ----------------------
 see <https://www.terraform.io/docs/providers/http/data_source.html>
 
+
+- Download the plugin.
+- [Install](https://terraform.io/docs/plugins/basics.html) it, or put into a directory with configuration files.
+- Create a minimal terraform template file.  There is an example in `sample/`.
+- Modify the settings in the provider and the topic settings in the `kafka_topic` resource.
+- Run:
+```
+$ terraform apply
+```
+
+- Example configuration:
+
+```hcl
+provider "kafka" {
+  bootstrap_servers = ["localhost:9092"]
+}
+
+resource "kafka_topic" "logs" {
+  name               = "systemd_logs"
+  replication_factor = 2
+  partitions         = 100
+
+  config = {
+    "segment.ms" = "20000"
+  }
+}
+```
+
+
 Developing the Provider
 ---------------------------
 
@@ -73,7 +105,9 @@ https://www.terraform.io/guides/writing-custom-terraform-providers.html
 
 How to debug terraform #16752
 ---------------------------
+```sh
 set TF_LOG=DEBUG
 set TF_TF_LOG_PATH=/tmp/log
 terraform apply
 observe TRACE level logs in the file /tmp/log
+```
